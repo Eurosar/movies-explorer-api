@@ -36,6 +36,7 @@ module.exports.createMovieValidator = celebrate({
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     movieId: Joi.number().required(),
+    owner: Joi.string().length(24).hex().required(),
   }),
 });
 
