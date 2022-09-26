@@ -8,13 +8,13 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-// const cors = require('cors');
+const cors = require('cors');
 const routes = require('./routes/index');
 const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const rateLimiter = require('./utils/rateLimiter');
 const { databaseUrl } = require('./utils/database');
-// const corsOptions = require('./utils/cors');
+const corsOptions = require('./utils/cors');
 
 // Возьмем нужные данные из файла .env
 // Если файла .env не будет, то PORT будет равен 3000
@@ -30,7 +30,7 @@ const app = express();
 app.use(helmet());
 
 // Запускаем проверку CORS (Включить, когда будет разрабатываться функционал фронтенда)
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Запустим parsers
 app.use(bodyParser.json());
