@@ -14,7 +14,7 @@ const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const rateLimiter = require('./utils/rateLimiter');
 const { databaseUrl } = require('./utils/database');
-const corsOptions = require('./utils/cors');
+// const corsOptions = require('./utils/cors');
 
 // Возьмем нужные данные из файла .env
 // Если файла .env не будет, то PORT будет равен 3000
@@ -30,7 +30,13 @@ const app = express();
 app.use(helmet());
 
 // Запускаем проверку CORS (Включить, когда будет разрабатываться функционал фронтенда)
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: [
+    'https://eurosar2movies.nomoredomains.sbs',
+    'http://localhost:3000',
+  ],
+  credentials: true,
+}));
 
 // Запустим parsers
 app.use(bodyParser.json());
