@@ -104,7 +104,7 @@ module.exports.updateUserInfo = (req, res, next) => {
  * @param req
  * @param res
  * @param next
- * @returns {Promise<R | *> | Promise<ResultType | *> | Promise<any>}
+ * @returns {Promise<R | *>| Promise<any>}
  */
 module.exports.login = (req, res, next) => {
   // Деструктурируем входящие от клиента данные
@@ -125,7 +125,7 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-          secure: true,
+          // secure: true,
           sameSite: 'none',
         })
         .send({ token });
